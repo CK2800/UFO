@@ -48,20 +48,38 @@ public class Main {
         print_tally(freq);
     }
 
+
+
     private static HashMap<Integer, Long> doWork01(String file) throws IOException
     {
-        Reader reader = loadFile(file);
+        Reader reader = loadFile01(file);
         HashMap<Integer, Long> freq = new HashMap<>();
-        tallyChars(reader, freq);
+        tallyChars02(reader, freq);
         reader.close();
         return freq;
     }
-    private static Reader loadFile(String fileName)
+
+    private static Reader loadFile02(String fileName)
     {
         InputStream is = Main.class.getClassLoader().getResourceAsStream(fileName);
         Reader reader = new InputStreamReader(is);
         return reader;
+    }
 
+    private static Reader loadFile01(String fileName) throws FileNotFoundException
+    {
+        Reader reader;
+        try
+        {
+            // file is in resources when running from within IDE.
+            reader = new FileReader("src/main/resources/" + fileName);
+        }
+        catch (Exception e)
+        {
+            // file is in root when running from CMD.
+            reader = new FileReader(fileName);
+        }
+        return reader;
     }
 
     private static void tallyChars(Reader reader, Map<Integer, Long> freq) throws IOException {
@@ -73,6 +91,19 @@ public class Main {
                 freq.put(b, 1L);
             };
         }
+    }
+
+    private static void tallyChars02(Reader reader, Map<Integer, Long> freq) throws IOException {
+        char[] chars = new char[256];
+        while((reader.read(chars)) != -1){
+            for(char b : chars)
+                try {
+                    freq.put((int)b, freq.get((int)b) + 1);
+                } catch (NullPointerException np) {
+                    freq.put((int)b, 1L);
+            };
+        }
+
     }
 
     private static void print_tally(Map<Integer, Long> freq) {

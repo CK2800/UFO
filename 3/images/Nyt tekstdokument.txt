@@ -1,0 +1,2 @@
+profiler1:
+Vi kan se at tallyChars er dyr, og at vi kun har mulighed for at ændre i måden vi læser på.
