@@ -31,7 +31,7 @@ public class Main {
                 Timer t = new Timer();
                 for (int i = 0; i < count; i++)
                 {
-                    freq = doWork01("FoundationSeries.txt");
+                    freq = doWork03("FoundationSeries.txt");
                 }
                 double time = t.check() * 1e9 / count;
                 st += time; // akk. system time.
@@ -54,16 +54,27 @@ public class Main {
     {
         Reader reader = loadFile01(file);
         HashMap<Integer, Long> freq = new HashMap<>();
+        tallyChars01(reader, freq);
+        reader.close();
+        return freq;
+    }
+
+    private static HashMap<Integer, Long> doWork02(String file) throws IOException
+    {
+        Reader reader = loadFile01(file);
+        HashMap<Integer, Long> freq = new HashMap<>();
         tallyChars02(reader, freq);
         reader.close();
         return freq;
     }
 
-    private static Reader loadFile02(String fileName)
+    private static HashMap<Integer, Long> doWork03(String file) throws IOException
     {
-        InputStream is = Main.class.getClassLoader().getResourceAsStream(fileName);
-        Reader reader = new InputStreamReader(is);
-        return reader;
+        BufferedInputStream stream = loadFile02(file);
+        HashMap<Integer, Long> freq = new HashMap<>();
+        tallyChars03(stream, freq);
+        stream.close();
+        return freq;
     }
 
     private static Reader loadFile01(String fileName) throws FileNotFoundException
@@ -82,7 +93,21 @@ public class Main {
         return reader;
     }
 
-    private static void tallyChars(Reader reader, Map<Integer, Long> freq) throws IOException {
+    private static BufferedInputStream loadFile02(String fileName) throws FileNotFoundException
+    {
+        FileInputStream fis;
+        try
+        {
+             fis = new FileInputStream(fileName);
+        }
+        catch(Exception e)
+        {
+            fis = new FileInputStream("src/main/resources/" + fileName);
+        }
+        return new BufferedInputStream(fis);
+    }
+
+    private static void tallyChars01(Reader reader, Map<Integer, Long> freq) throws IOException {
         int b;
         while ((b = reader.read()) != -1) {
             try {
@@ -105,6 +130,18 @@ public class Main {
         }
 
     }
+
+    private static void tallyChars03(BufferedInputStream stream, Map<Integer, Long> freq) throws IOException {
+        int b;
+        while ((b = stream.read()) != -1) {
+            try {
+                freq.put(b, freq.get(b) + 1);
+            } catch (NullPointerException np) {
+                freq.put(b, 1L);
+            };
+        }
+    }
+
 
     private static void print_tally(Map<Integer, Long> freq) {
         int dist = 'a' - 'A';
