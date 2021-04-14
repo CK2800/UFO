@@ -49,7 +49,13 @@ public class Main {
     }
 
 
-
+    /**
+     * Loads file with a FileReader.
+     * Uses the original method of reading 1 byte at a time and increments indices in a hashmap to count occurences.
+     * @param file
+     * @return
+     * @throws IOException
+     */
     private static HashMap<Integer, Long> doWork01(String file) throws IOException
     {
         Reader reader = loadFile01(file);
@@ -59,6 +65,13 @@ public class Main {
         return freq;
     }
 
+    /**
+     * Loads file with a FileReader.
+     * Reads the file in chunks of 256 bytes, traverses the byte arrays and increments indices in a hashmap to count occurences.
+     * @param file
+     * @return
+     * @throws IOException
+     */
     private static HashMap<Integer, Long> doWork02(String file) throws IOException
     {
         Reader reader = loadFile01(file);
@@ -68,6 +81,13 @@ public class Main {
         return freq;
     }
 
+    /**
+     * Loads file with a BufferedInputStream.
+     * Uses the original method of reading 1 byte at a time and increments indices in a hashmap to count occurences.
+     * @param file
+     * @return
+     * @throws IOException
+     */
     private static HashMap<Integer, Long> doWork03(String file) throws IOException
     {
         BufferedInputStream stream = loadFile02(file);
@@ -77,6 +97,12 @@ public class Main {
         return freq;
     }
 
+    /**
+     * Reads the file with {fileName}.
+     * @param fileName
+     * @return
+     * @throws FileNotFoundException
+     */
     private static Reader loadFile01(String fileName) throws FileNotFoundException
     {
         Reader reader;
@@ -93,6 +119,12 @@ public class Main {
         return reader;
     }
 
+    /**
+     * Reads the file with {fileName}.
+     * @param fileName
+     * @return
+     * @throws FileNotFoundException
+     */
     private static BufferedInputStream loadFile02(String fileName) throws FileNotFoundException
     {
         FileInputStream fis;
@@ -107,6 +139,12 @@ public class Main {
         return new BufferedInputStream(fis);
     }
 
+    /**
+     * Reads bytes from the file one at a time and increments occurences in a hashmap.
+     * @param reader
+     * @param freq
+     * @throws IOException
+     */
     private static void tallyChars01(Reader reader, Map<Integer, Long> freq) throws IOException {
         int b;
         while ((b = reader.read()) != -1) {
@@ -118,6 +156,12 @@ public class Main {
         }
     }
 
+    /**
+     * Reads bytes from the file in chunks of 256 bytes and increments occurences in a hashmap.
+     * @param reader
+     * @param freq
+     * @throws IOException
+     */
     private static void tallyChars02(Reader reader, Map<Integer, Long> freq) throws IOException {
         char[] chars = new char[256];
         while((reader.read(chars)) != -1){
@@ -131,6 +175,12 @@ public class Main {
 
     }
 
+    /**
+     * Reads bytes from the file one at a time and increments occurences in a hashmap.
+     * @param stream
+     * @param freq
+     * @throws IOException
+     */
     private static void tallyChars03(BufferedInputStream stream, Map<Integer, Long> freq) throws IOException {
         int b;
         while ((b = stream.read()) != -1) {
