@@ -20,7 +20,7 @@ public class Main {
         Map<Integer, Long> freq = null;
         int n = 10, excel = 10;
         int count = 5;
-        System.out.println("Running experiment " + n*count + " times");
+        System.out.println("Running experiment " + n*count*excel + " times");
         double st = 0.0, sst = 0.0;
 
         for (int a = 0; a < excel; a++)
@@ -31,7 +31,9 @@ public class Main {
                 Timer t = new Timer();
                 for (int i = 0; i < count; i++)
                 {
-                    freq = doWork03("FoundationSeries.txt");
+                    //freq = doWork01("FoundationSeries.txt"); // original code
+                    freq = doWork02("FoundationSeries.txt"); // reading in chunks of 256 bytes
+                    //freq = doWork03("FoundationSeries.txt"); // reading with FileInputStream
                 }
                 double time = t.check() * 1e9 / count;
                 st += time; // akk. system time.
