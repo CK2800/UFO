@@ -75,9 +75,22 @@ For at identificere flaskehalse i programmet, har vi brugt Java flight recorder 
 Af billedet herunder fremgår det, at kørslen af programmet i sin helhed især bruger tid på \begin{verbatim}
     Main.tallyChars(Reader, Map)
 \end{verbatim}
-Med identifikationen af den primære flaskehals, granskede vi den originale kode for at forstå den samt fremkomme med umiddelbare optimeringsskridt.
-HER BILLEDE AF DEN ORIGINALE KODE.
-Vores umiddelbare mistanke faldt på det faktum, at koden traverserer hele filen 1 bogstav ad gangen. Dette resulterer i mange læsninger på disken, hvorfor vi drøftede følgende løsningsforslag:
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{images/tallyChars01.PNG}
+    \caption{Flammegraf for original tallyChars metode.}
+    \label{fig:1}
+\end{figure}
+Billedet med flammegrafen viser også, at der er relativt mange skridt forbundet med den originale kode. Eksempelvis kaldes der ofte metoder på StreamDecoder- og CharsetDecoder-objekter, før karakteren indsættes i HashMap.
+Med identifikationen af den mulige flaskehals, granskede vi den originale kode for at forstå den, samt fremkomme med umiddelbare optimeringsskridt.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{images/tallyChars01_code.PNG}
+    \caption{Original tallyChars metode.}
+    \label{fig:2}
+\end{figure}
+\paragraph{}
+Vores umiddelbare mistanke faldt på det faktum, at koden traverserer hele filen, 1 bogstav ad gangen. Dette resulterer i mange læsninger på disken, hvorfor vi drøftede følgende løsningsforslag:
 \begin{enumerate}
     \item Indlæsning af (dele af) filen til RAM.
     \item Anvendelse af alternativ reader, eventuelt med indbygget buffer.
@@ -86,11 +99,68 @@ Vores umiddelbare mistanke faldt på det faktum, at koden traverserer hele filen
 \subsection{Fravalg af forslag 1}
 \paragraph{}Vi indså hurtigt at indlæsning af filen inden kørslen af Main.tallyChars ville bryde med kontrakten, idet en ændring af indlæsningstidspunkt for filen vil medføre, at indlæsningsmetoden skal køres først. Dette vil medføre ændringer i kodebasen andre steder, idet en ny metode til indlæsning af filen i RAM ville skulle kaldes først.
 \subsection{Anvendelse af alternativ reader}
-\paragraph{}Her kommer lidt om det og nogle tal og måske en lækker graf. Kodeeks. mv.
+\paragraph{}Med vores mistanke om flaskehalsens årsag in mente, tog vi en BufferedInputStream i brug, for at teste, om læsning af buffer fra memory ville gøre nogen forskel. Som det kan ses af flg. graf, var det en forbedring i kørselstiderne. Brugen af BufferedInputStream er imidlertid også et brud på kontrakten, idet der fordres en ny signatur på metoden:
+\begin{verbatim}
+    private static void tallyChars(BufferedInputStream stream, 
+        Map<Integer, Long> freq)
+\end{verbatim}
+Anvendelsen af BufferedInputStream skal således ses som en afprøvning af konceptet med en buffer at læse fra. Senere kunne vi formentlig have brugt BufferedReader for overholdelse af kontrakten;
+\begin{verbatim}
+    private static void tallyChars(Reader reader, Map<Integer, 
+        Long> freq)
+\end{verbatim}
+Som det fremgår af figurerne \ref{fig:3} - \ref{fig:6}, er indlæsning i større bidder en plausibel løsning, idet den blå kasse med hale viser den originale tallyChars-metode. Den grå kasse med hale viser tider med indlæsning vha. BufferedInputStream:
+\pagebreak
+\subsection{Indlæsningstider}
+    \begin{figure}[htb]
+        \begin{minipage}[t]{.5\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{images/win10idekmh.PNG}
+            \caption{Kørselstider, IDE, Win10.}\label{fig:3}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{.5\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{images/osxidekmh.PNG}
+            \caption{Kørselstider, IDE, OSX.}\label{fig:4}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{.5\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{images/win10cmdkmh.PNG}
+            \caption{Kørselstider, CMD, Win10.}\label{fig:5}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{.5\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{images/osxcmdkmh.PNG}
+            \caption{Kørselstider, CMD, OSX.}\label{fig:6}
+        \end{minipage}
+    \end{figure}
 \subsection{Indlæsning af filen i bidder vha. char array}
-\paragraph{}Også her kommer info og lækre grafer. Kodeeks mv.
-\section{Vores metoder}
+\paragraph{}Som det videre fremgår af figurerne \ref*{fig:3}-\ref*{fig:6} ovenfor, er indlæsning vha. et char-array en hurtig løsning. Den orange kasse med hale er, i alle 4 figurer, den hurtigste og har samtidig ganske stabile kørselstider, uanset om den afvikles fra ide eller kommandoprompt.
+Vi har forsøgt at justere på længden af char-array'et, den bedste performance opnås dog ved enten 128 eller 256 pladser. Vores tese er, at det lagrede array, ved mange elementer, fylder mere end der er plads til i RAM, derfor skrives dele af array'et måske til disken. 
+\newpage
+\section{Videre optimering}
 \paragraph{}
-TBD her opstiller vi en tabel med vores egne metoder og skriver lidt om forskellene.
-Og så kommer der billeder af de forskellige kørsler og gerne en flammegraf.
+Vores optimerede kodes hurtigere kørselstid kan også ses af nedenstående flammegraf, der viser en markant mindre dybde i nestede kald fra tallyChars-metoden.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{images/tallyChars02.PNG}
+    \caption{Flammegraf med færre nestede kald fra tallyChars.}
+    \label{fig:optimeret_fg}
+\end{figure}
+\paragraph{}
+Koden er således klar til videre forædling. Vi opstiller her et par forslag som vil give yderligere forbedringer i kørselstiderne.
+\begin{enumerate}
+    \item Fjernelse af try-catch sætningen og istedet returnerer getOrDefault.
+    \item Tråde til at indlæse parallelt.
+    \item Alternativ datastruktur til HashMap.
+\end{enumerate}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{images/tallyChars02_code.PNG}
+    \caption{Optimeret tallyChars metode.}
+    \label{fig:optimeret}
+\end{figure}
 \end{document}
