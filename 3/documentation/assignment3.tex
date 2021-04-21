@@ -153,9 +153,11 @@ Vores optimerede kodes hurtigere kørselstid kan også ses af nedenstående flam
 \paragraph{}
 Koden er således klar til videre forædling. Vi opstiller her et par forslag som vil give yderligere forbedringer i kørselstiderne.
 \begin{enumerate}
-    \item Fjernelse af try-catch sætningen og istedet returnerer getOrDefault.
+    \item Fjernelse af try-catch sætningen og istedet indsætte vha. getOrDefault-metoden på Map således:\begin{verbatim}
+        freq.put((int)b, freq.getOrDefault((int)b, 0L) + 1)
+    \end{verbatim}    
     \item Tråde til at indlæse parallelt.
-    \item Alternativ datastruktur til HashMap.
+    \item Alternativ datastruktur til HashMap (dog brud med kontrakt).
 \end{enumerate}
 \begin{figure}[htb]
     \centering

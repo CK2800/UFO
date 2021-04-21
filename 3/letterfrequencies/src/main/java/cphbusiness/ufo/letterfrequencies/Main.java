@@ -169,6 +169,7 @@ public class Main {
         while((reader.read(chars)) != -1){
             for(char b : chars)
                 try {
+                    
                     freq.put((int)b, freq.get((int)b) + 1);
                 } catch (NullPointerException np) {
                     freq.put((int)b, 1L);
@@ -184,6 +185,7 @@ public class Main {
      * @throws IOException
      */
     private static void tallyChars03(BufferedInputStream stream, Map<Integer, Long> freq) throws IOException {
+
         int b;
         while ((b = stream.read()) != -1) {
             try {
