@@ -1,0 +1,179 @@
+\documentclass{article}
+\usepackage[danish]{babel}
+\usepackage{graphicx}
+\usepackage{outlines}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+\usepackage{inconsolata}
+\usepackage{color}
+\usepackage{hyperref}
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$\blacksquare$}
+\renewcommand{\labelitemiv}{$\star$}
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{pgreen},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pred},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$$},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+\title{%
+Bremses udviklingen af sin fart?
+}
+\author{Mads Wulff Nielsen \\
+Claus Kramath}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\newpage
+\tableofcontents
+\thispagestyle{empty} 
+\newpage
+\section{Forord}
+\paragraph{}
+Det smarte hjem er i sin vugge, men går teknologiudviklingen så
+stærkt, at den bremses? Vi ser på hvilke mekanismer der er i spil, når nye
+landevindinger går hurtigere, end mennesket måske er klar til, med fokus
+rettet mod it-teknologi i særdeleshed.
+\section{Indledning}
+\paragraph{}
+Dele af neurovidenskaben argumenterer for, at vores hjerne ikke er fulgt med den øvrige udvikling, 
+og således anser ændringer i tillærte vaner for farlige. Man taler eksempelvis om loss-of-control \footnote{\url{https://www.psychologytoday.com/us/blog/what-would-aristotle-do/201105/the-fear-losing-control}}
+når nye ting introduceres eller skal indlæres \footnote{\url{https://digitalwellbeing.org/are-our-brains-really-no-match-for-our-technology/} \footnote{https://www.youtube.com/watch?v=JX3RkHtFP4Q}}. 
+Samtidig har mennesket gennem tusinder af år skabt civilisationer og foretaget landevindinger og har på den måde udviklet sig til trods for ovenstående påstand.
+\paragraph{}
+Nye teknologiers fremmarch går ofte hånd i hånd med skepsis \footnote{\url{https://www.verywellmind.com/what-is-the-fear-of-technology-2671897}}.
+Dette begreb; teknofobi, kender vi fra tidligere tiders opfindelser, såsom: den førerløse elevator \footnote{https://www.npr.org/2015/07/31/427990392/remembering-when-driverless-elevators-drew-skepticism}, mikrobølgeovnen \footnote{\url{http://historyoftech.mcclurken.org/microwave/the-impact/}}
+samt aktuelt den førerløse bil \footnote{https://www.nal.com/blog/fear-of-autonomous-vehicles/}
+Da der i det menneskeskabte samfund, udover den før omtalte påstand, også ofte er mange meninger og hensyn at tage, og da teknologier kan være svære at forstå omfanget og følgerne af, er der således modsatrettede kræfter igang, når ny teknologi dukker op.
+\paragraph{}
+Vi vil kigge nærmere på årsagerne til at it-teknologiudviklingens høje hastighed også kan være det, der bremser den, med særligt fokus på intelligente hjem.
+\section{Metode}
+\paragraph{}
+For at kunne afgøre, om der reelt er tale om en bremsende effekt, vil vi fortolke 
+data som forudsiger, hvordan udbredelsen af intelligente hjem burde se ud nu og 
+sammenligne disse med den faktiske tilstand.
+Vi vil også kigge på historiske data om udbredelsen af mikrobølgeovnen, tv, biler, kloning mv. samt indsamle data vedr. folks holdning til it-teknologi på baggrund af den seneste tids omtale af blandt andet påvirkningen af det amerikanske valg i 2016, førerløse biler, noget andet godt og så videre.
+https://www.the-ambient.com/features/future-of-smart-home-timeline-310 , https://guidehouseinsights.com/news-and-views/smart-home-predictions-what-will-and-wont-happen-in-2019 , https://visual.ly/community/Infographics/technology/smart-homes-evolution-timeline , https://www.euractiv.com/section/energy/opinion/are-we-there-yet-current-state-of-the-smart-home-market/
+\section{Historisk udvikling}
+\paragraph{}
+Udviklingen af salget af mikrobølgeovne tog fart i 1980'erne, især i USA, hvor 25\% af de amerikanske husholdninger havde en mikrobølgeovn i 1986 \footnote{https://www.timetoast.com/timelines/the-history-of-a-microwave-oven}.
+Til sammenligning var det i 1971 blot 1\%.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{microwaveovens.PNG}
+    \caption{Der skulle gå godt 47 år fra opfindelse til udbredelse af mikrobølgeovnen.}
+    \label{fig:microwaveovens}
+\end{figure}
+\paragraph{}
+På samme måde kan man i dag opleve tilbageholdenhed i forhold til førerløse biler. Et studie fra AAA, den amerikanske pendant
+til FDM i Danmark, foretaget i 2019, viser, at 3 ud af 4 amerikanere er bange for den fuldt selvkørende bil.
+Dette tal er en stigning i forhold til tallet fra en lignende undersøgelse fra 2017, her var andelen blot 63\% \footnote{https://www.forbes.com/sites/tanyamohn/2019/03/28/most-americans-still-afraid-to-ride-in-self-driving-cars/?sh=205ca6ec32da}.
+\section{Intelligente hjem}
+\paragraph{}
+Selvom udviklingen af enheder til intelligente hjem er i gang, synes teknologien som helhed stadig at være infantil.
+En af årsagerne skal findes i at der, også her, hersker en tydelig skepsis blandt potentielle forbrugere \footnote{\url{https://www.businessinsider.com/consumers-holding-off-on-smart-home-gadgets-thanks-to-privacy-fears-2017-11?r=US\&IR=T}}.
+Samtidig 
+Lovgivning på bagkant
+Hjælp på bagkant - teknologien er så ny, at ikke mange ved hvordan problemer afhjælpes.
+
+\section{Næste skridt (hedder det det?)}
+Artiklen er overvejende baseret på internationale data, læses den med et regionalt udgangspunkt, bør den suppleres med data fra den lokale befolkning. Vi formoder at der er demografiske forhold som vil være sporbare i disse. Eksempelvis kan man forestille sig, at man i takt med den stigende overvågning af Kinas befolkning, vil kunne finde andre, interessante svar, hvis undersøgelser blev foretaget blandt disse individer - dette fordrer dog at den frie tale er mulig... 
+Man kunne f.eks. spørge:
+\begin{enumerate}
+    \item Hvad synes du om at data om dig gemmes?
+    \item Ved du hvordan data anonymiseres?
+    \item Har du tænkt over, om du kan tale fortroligt derhjemme, når telefonen formentlig lytter med?
+    \item Listes teknologier, som overvåger dig, ind i dit liv, uden du er klar over det?
+    \item osvosv.    
+\end{enumerate}
+\newpage
+\section{TBD}
+Er der funktionalitet du ikke vil undvære, og dermed giver du køb på dine holdninger?
+Ved du hvad det vil sige, når nogle firmaer "lytter med"?
+Coronapas/nemid
+Teknologi
+? er om politikerne er klar over hvad der trækkes ned over hovedet på folk?
+Eller - listes teknologi ind, som vi, havde vi haft et oplyst grundlag, bevidst havde fravalgt?
+
+
+Hvad er den afledte effekt af udviklingens hastighed?
+Større/mindre skepsis overfor nye teknologier?
+Er folk bevidste om konsekvenserne af deres valg?
+Har folk et valg? 
+- kan jeg gå på restaurant uden smartphone for tiden?
+- kan jeg overhovedet betale for noget uden smartphone?
+- 
+
+Smart homes er måske også mere minded for den mere realistiske forbruger (dvs 35+ måske med eget hjem) som træffer mere oplyste valg end hvalpen, der er 20-25 og våd bag ørerne.
+Eller snarere - dem der i dag foretager ukritiske valg skal om 5 år til at investere i egen ejendom, og så tager markedet fart.
+OG: Smart homes er stadig i sin vugge fordi der ikke er enighed blandt udbydere af devices ( og det stod der om i en artikel et sted, måske den med tidslinjen) om hvilken måde der skal kommunikeres på, forbindes på osv. En afledning kunne være: Der er mange udbydere af smart home devices fordi... udviklingen af de boards, der skal bruges i de devices, er gået hurtigt. Altså bremses farten i den ene udvikling, af farten i den anden udvikling...
+\section{Fremgangsmåde}
+\paragraph{}
+For at identificere flaskehalse i programmet, har vi brugt Java flight recorder profileren, som findes i vores IDE; IntelliJ. 
+Af billedet herunder fremgår det, at kørslen af programmet i sin helhed især bruger tid på \begin{verbatim}
+    Main.tallyChars(Reader, Map)
+\end{verbatim}
+
+Billedet med flammegrafen viser også, at der er relativt mange skridt forbundet med den originale kode. Eksempelvis kaldes der ofte metoder på StreamDecoder- og CharsetDecoder-objekter, før karakteren indsættes i HashMap.
+Med identifikationen af den mulige flaskehals, granskede vi den originale kode for at forstå den, samt fremkomme med umiddelbare optimeringsskridt.
+
+\paragraph{}
+Vores umiddelbare mistanke faldt på det faktum, at koden traverserer hele filen, 1 bogstav ad gangen. Dette resulterer i mange læsninger på disken, hvorfor vi drøftede følgende løsningsforslag:
+\begin{enumerate}
+    \item Indlæsning af (dele af) filen til RAM.
+    \item Anvendelse af alternativ reader, eventuelt med indbygget buffer.
+    \item Læse filen i større bidder ved brug af byte arrays.
+\end{enumerate}
+\subsection{Fravalg af forslag 1}
+\paragraph{}Vi indså hurtigt at indlæsning af filen inden kørslen af Main.tallyChars ville bryde med kontrakten, idet en ændring af indlæsningstidspunkt for filen vil medføre, at indlæsningsmetoden skal køres først. Dette vil medføre ændringer i kodebasen andre steder, idet en ny metode til indlæsning af filen i RAM ville skulle kaldes først.
+\subsection{Anvendelse af alternativ reader}
+\paragraph{}Med vores mistanke om flaskehalsens årsag in mente, tog vi en BufferedInputStream i brug, for at teste, om læsning af buffer fra memory ville gøre nogen forskel. Som det kan ses af flg. graf, var det en forbedring i kørselstiderne. Brugen af BufferedInputStream er imidlertid også et brud på kontrakten, idet der fordres en ny signatur på metoden:
+\begin{verbatim}
+    private static void tallyChars(BufferedInputStream stream, 
+        Map<Integer, Long> freq)
+\end{verbatim}
+Anvendelsen af BufferedInputStream skal således ses som en afprøvning af konceptet med en buffer at læse fra. Senere kunne vi formentlig have brugt BufferedReader for overholdelse af kontrakten;
+\begin{verbatim}
+    private static void tallyChars(Reader reader, Map<Integer, 
+        Long> freq)
+\end{verbatim}
+Som det fremgår af figurerne \ref{fig:3} - \ref{fig:6}, er indlæsning i større bidder en plausibel løsning, idet den blå kasse med hale viser den originale tallyChars-metode. Den grå kasse med hale viser tider med indlæsning vha. BufferedInputStream:
+\pagebreak
+\subsection{Indlæsningstider}
+    
+\subsection{Indlæsning af filen i bidder vha. char array}
+\paragraph{}Som det videre fremgår af figurerne \ref*{fig:3}-\ref*{fig:6} ovenfor, er indlæsning vha. et char-array en hurtig løsning. Den orange kasse med hale er, i alle 4 figurer, den hurtigste og har samtidig ganske stabile kørselstider, uanset om den afvikles fra ide eller kommandoprompt.
+Vi har forsøgt at justere på længden af char-array'et, den bedste performance opnås dog ved enten 128 eller 256 pladser. Vores tese er, at det lagrede array, ved mange elementer, fylder mere end der er plads til i RAM, derfor skrives dele af array'et måske til disken. 
+\newpage
+\section{Videre optimering}
+\paragraph{}
+Vores optimerede kodes hurtigere kørselstid kan også ses af nedenstående flammegraf, der viser en markant mindre dybde i nestede kald fra tallyChars-metoden.
+
+\paragraph{}
+Koden er således klar til videre forædling. Vi opstiller her et par forslag som vil give yderligere forbedringer i kørselstiderne.
+\begin{enumerate}
+    \item Fjernelse af try-catch sætningen og istedet indsætte vha. getOrDefault-metoden på Map således:\begin{verbatim}
+        freq.put((int)b, freq.getOrDefault((int)b, 0L) + 1)
+    \end{verbatim}    
+    \item Tråde til at indlæse parallelt.
+    \item Alternativ datastruktur til HashMap (dog brud med kontrakt).
+\end{enumerate}
+
+\end{document}
