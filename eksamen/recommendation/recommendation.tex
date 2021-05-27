@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage[danish]{babel}
+\usepackage{graphicx}
+\usepackage{outlines}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+\usepackage{inconsolata}
+\usepackage{color}
+\usepackage{hyperref}
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$\blacksquare$}
+\renewcommand{\labelitemiv}{$\star$}
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{pgreen},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pred},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$$},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+\title{%
+Anbefalinger til artiklen \\ 
+'Containerization As Learning Tool' \\
+skrevet af Henning W.
+}
+\author{Claus Kramath}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\newpage
+\tableofcontents
+\thispagestyle{empty} 
+\newpage
+\section{Forord}
+\paragraph{}
+Efter at have læst artiklen, som, efter min mening, rammer en ganske relevant problemstilling, såvel i undervisningsøjemed som i det professionelle arbejdsliv, vil jeg her blot komme med tre anbefalinger, som kan være med til at tydeliggøre overfor eventuelle beslutningstagere, hvorfor artiklen har sin berettigelse.\\
+\section{Anbefalinger}
+\paragraph{Eksempelsammenligning}
+For at klæde beslutningstagere på til at træffe oplyste valg, kunne det være befordrende med et - endnu - tydeligere eksempel på forskellen i arbejdsgangene med og uden docker. \\
+F.eks. kunne det beskrives hvorledes vi, i undervisningen, blev instrueret i at kopiere 3 neo4j mapper og konfigurere dem i hånden, således at der kunne opsættes et såkaldt cluster. Medtag gerne alle skridtene!\\
+Til sammenligning kunne den tilsvarende docker-compose fil vises, som opstiller samme cluster automatisk - her kunne det også være relevant at nævne, at docker-compose filen også vil fejle automatisk, hvis den er konfigureret forkert eller mangelfuldt.
+\paragraph{Erhvervsfaglig relevans}
+Da skolen har til formål at uddanne mennesker til erhvervslivet, kunne det være relevant at inddrage data fra jobopslag, som indikerer hvor ofte kendskab til docker efterspørges.\\
+Jeg har til dette formål fundet følgende graf som viser trends vedr. docker i jobopslagene på jobindex\footnote{\url{https://www.jobindex.dk/jobsoegning/analyse?q=docker\&address=\&subid=1\&jobage=\&mindate=\&maxdate=\&supid=1\&page=}}:
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=11cm, keepaspectratio]{docker_statistik.png}    
+    \label{fig:docker}
+\end{figure}
+\paragraph{Tendenser i erhvervet}
+For at tilføje pondus, kunne man gøre klart, hvilke tendenser der findes i erhvervslivet vedr. docker eller containerisation i almindelighed.\\
+Eksempelvis har Danmark fået sin første Docker Level 1 certificerede partner\footnote{\url{https://www.peytz.dk/technology-blog/foerste-docker-partner-i-danmark}} for nyligt.
+\end{document}

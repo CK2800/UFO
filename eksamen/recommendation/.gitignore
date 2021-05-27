@@ -1,0 +1,7 @@
+*/
+__*.*
+*.PNG
+
+recommendation.*
+!recommendation.tex
+!recommendation.pdf
