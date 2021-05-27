@@ -1,5 +1,12 @@
+*/
 __*.*
 *.PNG
+ideer.txt
+recommendations.txt
 assignment4.*
 !assignment4.tex
 !assignment4.pdf
+
+assignment4 - EDIT.*
+!assignment4 - EDIT.tex
+!assignment4 - EDIT.pdf
